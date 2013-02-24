@@ -13,7 +13,7 @@ class Parser {
 		$this->input = file($file);
 
 		// Crappy hack to deal with nested arrays, the following gets them on to one line so
-		// they are easier to deal with.
+		// they are easier to deal with. Should be json_decode-able...
 		$this->input = implode('#nl#', preg_replace(array('/\n/'), array('#nl#'), $this->input));
 		preg_match_all('/[^#]*=[^#]*\[([^=]*)\]/', $this->input, $matches);
 		foreach($matches[0] as $match) {
@@ -49,8 +49,8 @@ class Parser {
 
 				$this->previous_key_group = &$this->current_key_group;
 
+				// Deal with nested key groups
 				$groups = explode('.', $key);
-
 				foreach($groups as $key) {
 
 					if(!isset($this->current_key_group->$key)) {
