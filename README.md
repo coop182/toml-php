@@ -4,16 +4,14 @@ TOML Parser in PHP
 An parser for [TOML](https://github.com/mojombo/toml) written in PHP.
 
 ## Usage
-
+    
     <?php
     
     include('./src/Toml/Parse.php');
     
-    use Toml\Parser;
+    $result = new Toml\Parser('./tests/example.toml');
     
-    $parser = new Parser('./tests/example.toml');
-    
-    print_r($parser->result);
+    print_r($result->get());
 
 ## Todo
 
