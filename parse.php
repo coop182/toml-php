@@ -2,8 +2,6 @@
 
 include('./src/Toml/Parse.php');
 
-use Toml\Parser;
+$result = new Toml\Parser('./tests/example.toml');
 
-$parser = new Parser('./tests/example.toml');
-
-print_r($parser->result);
+print_r($result->get());
